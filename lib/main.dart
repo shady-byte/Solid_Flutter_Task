@@ -35,21 +35,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Color _backgroundColor = const Color.fromRGBO(250, 178, 12, 0.5);
-  int r = 24;
-  int a = 11;
-  int b = 32;
-  int c = 7;
+  Color _backgroundColor = const Color.fromRGBO(120, 40, 12, 1);
+  int initialX = 7;   //Initial value for color generation
 
-  List<String> appMessages =
-    ["Be yourself; everyone else is already taken.",
+  final appMessages =
+    ["Be yourself, everyone else is already taken.",
       "So many books, so little time.",
       "A room without books is like a body without a soul.",
       "You only live once, but if you do it right, once is enough.",
       "Be the change that you wish to see in the world.",
       "In three words I can sum up everything I've learned about life: it goes on."
     ];
-    //["Welcome","Hello There","Happy to see you","Hope you are fine"];
 
   String _getRandomMessage() {
     final random = Random();
@@ -58,22 +54,25 @@ class _MyHomePageState extends State<MyHomePage> {
     return appMessages[index];
   }
 
-  void generateRandomColor() {
-    final result = (r * a + b) % c;
-    r = result;
-    print(result);
+  int _generateRandomNumberForColors() {
+    const a = 13;
+    const c = 67;
+    const m = 256;
+    final result = ((a * initialX) + c) % m;
+    setState(() {
+      initialX = result;
+    });
+
+    return result;
   }
 
   void _generateRGBColor() {
-    generateRandomColor();
-    final random = Random();
-    final red = random.nextInt(256);
-    final green = random.nextInt(256);
-    final blue = random.nextInt(256);
-    final opacity = (random.nextInt(10)+1) * 0.1;
+    final red = _generateRandomNumberForColors();
+    final green = _generateRandomNumberForColors();
+    final blue = _generateRandomNumberForColors();
 
     setState(() {
-      _backgroundColor = Color.fromRGBO(red, green, blue, opacity);
+      _backgroundColor = Color.fromRGBO(red, green, blue, 1);
     });
   }
 
