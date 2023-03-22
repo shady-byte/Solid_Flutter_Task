@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return appMessages[index];
   }
 
-  int _generateRandomNumberForColors() {
+  int _generateRandomNumber() {
     const a = 13;
     const c = 67;
     const m = 256;
@@ -67,9 +67,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _generateRGBColor() {
-    final red = _generateRandomNumberForColors();
-    final green = _generateRandomNumberForColors();
-    final blue = _generateRandomNumberForColors();
+    final red = _generateRandomNumber();
+    final green = _generateRandomNumber();
+    final blue = _generateRandomNumber();
 
     setState(() {
       _backgroundColor = Color.fromRGBO(red, green, blue, 1);
